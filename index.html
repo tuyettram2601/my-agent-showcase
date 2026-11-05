@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A public showcase of My Agent: its workflow, source standards, capabilities, and limits for audio and video editing.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <meta name="theme-color" content="#f4f1e9">
+  <title>My Agent - Audio and Video News Editor</title>
+  <style>
+    :root{--paper:#f4f1e9;--ink:#13221f;--muted:#5e6a63;--line:#d5d8cd;--green:#12624e;--green2:#dce9de;--amber:#f1bf72;--white:#fffefa;--night:#11231f;--shadow:0 18px 50px rgba(21,38,32,.09);--serif:Georgia,"Times New Roman",serif;--sans:"Segoe UI",Arial,Helvetica,sans-serif;--mono:Consolas,"Courier New",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55}a{color:inherit}button{font:inherit}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}.eyebrow{font:700 11px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--green)}
+    .top{border-bottom:1px solid var(--line);background:rgba(244,241,233,.95)}.top-inner{height:68px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:750;letter-spacing:-.03em}.mark{width:30px;height:30px;background:var(--green);border-radius:9px;display:grid;place-items:center;color:white;font:700 13px var(--mono)}.nav{display:flex;gap:26px;align-items:center;font-size:13px;color:var(--muted)}.nav a{text-decoration:none}.nav a:hover{color:var(--green)}.top-flag{font:700 10px var(--mono);letter-spacing:.06em;border:1px solid #b9c9bb;border-radius:100px;padding:7px 10px;color:var(--green);background:#eef4ec}
+    .hero{padding:82px 0 68px;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}.hero h1{font:500 clamp(42px,6vw,74px)/.98 var(--serif);letter-spacing:-.055em;margin:18px 0 24px;max-width:650px}.hero h1 em{color:var(--green);font-style:italic}.lead{font-size:18px;line-height:1.6;color:#43514a;max-width:570px}.hero-actions{display:flex;gap:12px;align-items:center;margin-top:30px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;padding:12px 17px;text-decoration:none;font-size:13px;font-weight:700}.btn-primary{background:var(--green);color:white}.btn-primary:hover{background:#0a4c3c}.btn-quiet{border:1px solid var(--line);color:var(--ink);background:transparent}.safety{margin-top:23px;display:flex;align-items:flex-start;gap:10px;color:#58655e;font-size:12px;max-width:540px}.shield{flex:0 0 20px;height:20px;border-radius:50%;background:var(--green2);color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:800}
+    .demo-shell{background:var(--night);border-radius:12px;padding:17px;color:#edf3ec;box-shadow:var(--shadow);position:relative}.demo-top{display:flex;align-items:center;justify-content:space-between;padding:2px 3px 15px;border-bottom:1px solid rgba(255,255,255,.13)}.demo-label{font:700 10px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:#a9c8ae}.live-dot{display:flex;align-items:center;gap:7px;font:10px var(--mono);color:#c3d0c3}.live-dot i{width:7px;height:7px;border-radius:50%;background:var(--amber)}.scenario-title{font:600 13px var(--sans);color:#c9d8cc;margin:16px 0 9px}.scenarios{display:flex;gap:7px;flex-wrap:wrap}.scenario{border:1px solid rgba(235,243,233,.22);background:transparent;color:#d9e3d9;border-radius:4px;padding:7px 9px;font-size:11px;cursor:pointer}.scenario:hover,.scenario[aria-pressed="true"]{background:#dce9de;color:#173229;border-color:#dce9de}.chat{padding:17px 2px 3px;min-height:292px}.bubble{border-radius:8px;padding:12px 14px;margin:0 0 12px;max-width:94%;font-size:12px;line-height:1.55}.bubble.user{background:#dce9de;color:#1b352b;margin-left:auto}.bubble.agent{background:#20372f;color:#eef5eb;border:1px solid rgba(255,255,255,.08)}.bubble small{display:block;font:9px var(--mono);text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin-bottom:6px}.answer-title{font-weight:750;color:#e9c27d;margin-bottom:5px}.answer-list{padding-left:17px;margin:7px 0}.answer-list li{padding:2px 0}.source-line{border-top:1px solid rgba(255,255,255,.12);margin-top:9px;padding-top:8px;color:#c2d1c3;font:10px var(--mono)}.demo-disclaimer{display:flex;gap:8px;border-top:1px solid rgba(255,255,255,.12);padding:12px 3px 1px;color:#c9d3c8;font-size:10px}.demo-disclaimer strong{color:#f2c77d}
+    .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}.ticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.ticker-item{padding-left:15px;border-left:2px solid var(--green)}.ticker-item b{display:block;font:600 13px var(--serif)}.ticker-item span{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+    section{padding:76px 0}.section-head{display:grid;grid-template-columns:.55fr 1.45fr;gap:26px;margin-bottom:34px;align-items:start}.section-head h2{font:500 clamp(30px,4vw,46px)/1.04 var(--serif);letter-spacing:-.04em;margin:0}.section-head p{margin:3px 0 0;color:var(--muted);max-width:610px;font-size:14px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:20px;border:1px solid var(--line);background:rgba(255,254,250,.52);min-height:166px}.step-no{font:11px var(--mono);color:var(--green)}.step h3{font:650 16px var(--serif);margin:18px 0 8px}.step p{margin:0;font-size:12px;color:var(--muted)}
+    .standards{background:#e7e9df}.standard-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.standard{background:var(--white);padding:24px;border-radius:6px}.standard .eyebrow{margin-bottom:12px;display:block}.standard h3{font:500 22px var(--serif);margin:0 0 12px}.standard ul{padding-left:18px;margin:0;color:#4f5d55;font-size:13px}.standard li{margin:7px 0}.boundary{background:var(--night);color:#f3f4eb}.boundary .section-head p{color:#bdc8be}.boundary-grid{display:grid;grid-template-columns:1fr 1fr;gap:38px}.boundary h3{font:500 24px var(--serif);margin:0 0 14px}.boundary ul{padding-left:18px;color:#d1dbd1;font-size:13px}.boundary li{margin:8px 0}.boundary .eyebrow{color:#b6d3b6}
+    .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.tool{border-top:2px solid var(--green);padding:17px 18px;background:rgba(255,254,250,.6)}.tool h3{font:650 16px var(--serif);margin:0 0 8px}.tool p{font-size:12px;color:var(--muted);margin:0}.status-note{margin-top:26px;padding:15px 18px;border:1px solid #dcc99e;background:#f8f0df;color:#675a3b;font-size:12px;border-radius:5px}
+    .footer{background:#e7e9df;border-top:1px solid var(--line);padding:25px 0}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}.footer-mark{display:flex;gap:9px;align-items:center}.footer-mark .mark{width:24px;height:24px;border-radius:7px;font-size:10px}
+    @media(max-width:860px){.hero{grid-template-columns:1fr;gap:38px;padding-top:60px}.hero-copy{max-width:700px}.section-head{grid-template-columns:1fr;gap:12px}.steps{grid-template-columns:1fr 1fr}.ticker-grid{grid-template-columns:1fr 1fr}.nav{gap:14px}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1160px)}.top-inner{height:auto;min-height:64px}.nav{display:none}.hero{padding:48px 0}.hero h1{font-size:48px}.lead{font-size:16px}.steps,.standard-grid,.boundary-grid,.tools{grid-template-columns:1fr}.ticker-grid{gap:12px}.ticker-item{padding-left:10px}.section-head{margin-bottom:24px}section{padding:55px 0}.demo-shell{padding:13px}.chat{min-height:0}.footer-row{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#top" aria-label="My Agent, back to top"><span class="mark" aria-hidden="true">M</span><span>My Agent</span></a>
+      <nav class="nav" aria-label="Main navigation"><a href="#workflow">Workflow</a><a href="#standard">Standards</a><a href="#limits">Limits</a><a href="#tools">Tools</a></nav>
+      <span class="top-flag">PUBLIC SHOWCASE</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Editorial assistant - Audio / Video</div>
+        <h1>Turn media into a <em>grounded news brief.</em></h1>
+        <p class="lead">My Agent helps review accessible audio, video, and links; identify key points; check sources; and prepare a concise brief for Feishu.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#demo">View the simulated demo <span aria-hidden="true">&nbsp;v</span></a><a class="btn btn-quiet" href="#workflow">Explore the workflow</a></div>
+        <div class="safety"><span class="shield" aria-hidden="true">OK</span><span>This page uses preset scenarios only. It does not connect to Hermes, Feishu, or any API, and does not accept files or visitor input.</span></div>
+      </div>
+      <aside class="demo-shell" id="demo" aria-label="Static conversation demo">
+        <div class="demo-top"><span class="demo-label">Conversation demo</span><span class="live-dot"><i aria-hidden="true"></i> Static simulation</span></div>
+        <p class="scenario-title">Choose a scenario to view an example</p>
+        <div class="scenarios" role="group" aria-label="Demo scenarios">
+          <button class="scenario" type="button" data-scenario="summary" aria-pressed="true">Summarize a video</button>
+          <button class="scenario" type="button" data-scenario="verify" aria-pressed="false">Unclear source</button>
+          <button class="scenario" type="button" data-scenario="clarify" aria-pressed="false">Missing details</button>
+        </div>
+        <div class="chat" id="chat" aria-live="polite" aria-atomic="true"></div>
+        <div class="demo-disclaimer"><span aria-hidden="true">i</span><span><strong>Illustrative scenario.</strong> This is not output from a live Agent run.</span></div>
+      </aside>
+    </div>
+
+    <div class="ticker"><div class="wrap ticker-grid">
+      <div class="ticker-item"><b>Input</b><span>Accessible audio/video files or links</span></div>
+      <div class="ticker-item"><b>Focus</b><span>Relevance, accuracy, sources, and timing</span></div>
+      <div class="ticker-item"><b>Output</b><span>A concise Markdown brief with verification notes</span></div>
+      <div class="ticker-item"><b>Channel</b><span>My Agent in configured Feishu chats</span></div>
+    </div></div>
+
+    <section id="workflow"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">01 / Workflow</div><div><h2>From raw media to a reviewable brief.</h2><p>The news-editor profile guides the process. When information is missing or a source cannot be verified, the Agent should say so and ask the requester for direction.</p></div></div>
+      <div class="steps">
+        <article class="step"><span class="step-no">01</span><h3>Understand the request</h3><p>Identify the goal, scope, input, desired format, and recipient.</p></article>
+        <article class="step"><span class="step-no">02</span><h3>Check the source</h3><p>Prefer official sources; flag conflicting or unverified information.</p></article>
+        <article class="step"><span class="step-no">03</span><h3>Extract key points</h3><p>Summarize relevant findings, retain source links, and do not widen the requested time range or count.</p></article>
+        <article class="step"><span class="step-no">04</span><h3>Review and deliver</h3><p>Check the content, status, recipient, and sharing scope before handoff.</p></article>
+      </div>
+    </div></section>
+
+    <section class="standards" id="standard"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">02 / Standards</div><div><h2>Clear sources. Clear confidence.</h2><p>The brief should separate supported information from gaps. A tool reporting completion does not replace a content review.</p></div></div>
+      <div class="standard-grid">
+        <article class="standard"><span class="eyebrow">A useful brief includes</span><h3>Enough detail to verify</h3><ul><li>A task summary and a status: Completed, In Progress, or Failed.</li><li>Key points, timestamps when supported, and source links.</li><li>Clear notes on uncertainty, access limits, or next steps.</li></ul></article>
+        <article class="standard"><span class="eyebrow">Editorial principles</span><h3>Do not fill gaps with guesses</h3><ul><li>Do not invent or distort information to reach a requested count.</li><li>Do not present old items as new or silently change the time range.</li><li>If reliable sources conflict and evidence is insufficient, separate the issue and ask for guidance.</li></ul></article>
+      </div>
+    </div></section>
+
+    <section class="boundary" id="limits"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">03 / Capability boundaries</div><div><h2>Supports editorial work. Does not replace human review.</h2><p>Actual results depend on access, media quality, and the tools available to the Hermes Agent.</p></div></div>
+      <div class="boundary-grid">
+        <div><h3>What it can help with</h3><ul><li>Review accessible audio/video material or URLs.</li><li>Extract notable points within the requested topic and scope.</li><li>Draft a concise brief with sources and notes about uncertainty.</li><li>Reply through Feishu in a configured conversation.</li></ul></div>
+        <div><h3>What not to assume</h3><ul><li>Verbatim transcription, speaker identification, or accurate subtitles for every format.</li><li>Access to every URL, login-protected file, long recording, or untested format.</li><li>Independent resolution of vague requests, suspicious sources, or unclear sharing rights.</li><li>Replacement of human approval before important content is published.</li></ul></div>
+      </div>
+    </div></section>
+
+    <section id="tools"><div class="wrap">
+      <div class="section-head"><div class="eyebrow">04 / Tools</div><div><h2>Each tool has a separate role.</h2><p>This showcase does not use these permissions. The descriptions below reflect the current workflow profile.</p></div></div>
+      <div class="tools">
+        <article class="tool"><h3>Hermes</h3><p>Runs the news-editor profile: receives, analyzes, verifies, and drafts the brief.</p></article>
+        <article class="tool"><h3>Feishu</h3><p>Receives requests and delivers replies in configured direct or group chats.</p></article>
+        <article class="tool"><h3>Codex</h3><p>Helped prepare this showcase. It is not the runtime service behind this page.</p></article>
+      </div>
+      <div class="status-note"><strong>About the name:</strong> The current profile defines a news editor for audio/video material. Verbatim transcription has not been confirmed; request it explicitly and review the result if an exact transcript is needed.</div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><div class="footer-mark"><span class="mark" aria-hidden="true">M</span><span><strong>My Agent</strong><br>Audio and video news editor</span></div><span>This public showcase is view-only. It does not grant access to the bot.</span></div></footer>
+
+  <script>
+    const scenarios={
+      summary:{user:'Summarize this sample video in three key points. Keep timestamps and flag anything unverified.',tag:'Sample request - simulated video',title:'Example brief structure',items:['00:42 - The media introduces its main topic.','02:18 - The speaker presents the first key point.','05:36 - The media closes with a summary.'],source:'Source: sample video, 06:10. Illustrative content, not a real event.',note:'External verification: not performed in this sample scenario.'},
+      verify:{user:'This clip makes an important claim but does not name a source. Can it be confirmed?',tag:'Sample request - source check',title:'Not enough evidence to confirm',items:['The sample material does not identify the origin of the claim.','A link to an official channel or a reliable independent source is needed.','Do not present this claim as a verified fact.'],source:'Source: demo scenario. No external source was supplied.',note:'This is a safety example, not a live fact check.'},
+      clarify:{user:'Find the latest news about this topic.',tag:'Sample request - missing scope',title:'More detail is needed',items:['What time range should be covered?','How many items do you need, and which sources should be prioritized?','Once these criteria are clear, the Agent can filter and report any evidence gaps.'],source:'Source: no file or link was supplied in this sample.',note:'This illustrates a clarification step; the page does not contact the live Agent.'}
+    };
+    const chat=document.getElementById('chat');
+    function showScenario(key){const s=scenarios[key];if(!s)return;chat.replaceChildren();const user=document.createElement('div');user.className='bubble user';const us=document.createElement('small');us.textContent=s.tag;user.append(us,document.createTextNode(s.user));const agent=document.createElement('div');agent.className='bubble agent';const as=document.createElement('small');as.textContent='My Agent - static scenario';const title=document.createElement('div');title.className='answer-title';title.textContent=s.title;const list=document.createElement('ul');list.className='answer-list';for(const item of s.items){const li=document.createElement('li');li.textContent=item;list.append(li)}const source=document.createElement('div');source.className='source-line';source.textContent=s.source+' '+s.note;agent.append(as,title,list,source);chat.append(user,agent);document.querySelectorAll('.scenario').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scenario===key)))}
+    document.querySelectorAll('.scenario').forEach(button=>button.addEventListener('click',()=>showScenario(button.dataset.scenario)));
+    showScenario('summary');
+  </script>
+</body>
+</html>
